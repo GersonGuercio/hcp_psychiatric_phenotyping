@@ -1,9 +1,8 @@
 
 library(summarytools)
-library(DataExplorer)
 library(dplyr)
 
-setwd("C:/Users/linds/Dropbox (Personal)/Neurohackademy")
+setwd("~/Neurohackademy")
 
 # read in hcp resticted data
 hcp_behav_res <- read.csv(file = "hcp_RESTRICTED_loliver4_8_6_2019_12_56_55.csv")
@@ -31,12 +30,10 @@ hcp_behav_sub <- merge(hcp_behav_open_sub,hcp_behav_res_sub[,c(1,5)],by="Subject
 hcp_behav_sub <- hcp_behav_sub[!is.na(hcp_behav_sub$sub_use),]
 hcp_behav_sub$sub_use <- as.factor(hcp_behav_sub$sub_use)
 
-write.csv(hcp_behav_sub,file="hcp_behav_sub_2019-08-06.csv", row.names=F)
+write.csv(hcp_behav_sub,file="hcp_drug_prediction_data.csv", row.names=F)
 
 
 # explore the data
-
-create_report(hcp_behav_sub, output_file="hcp_behav_sub_report.pdf")
 
 dfSummary(hcp_behav_sub)
 
